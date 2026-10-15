@@ -802,7 +802,7 @@ Here you can get a Mistral API [key](https://admin.mistral.ai/).
 OpenRouter fronts hundreds of models from many providers (OpenAI, Anthropic, Google, Meta, etc.)
 behind a single API. Unlike Mistral, its integration ships with the default dependencies,
 so no extra install is needed.
-Models are addressed as `"provider/model"`, e.g. `"anthropic/claude-sonnet-4.5"`; see the
+Models are addressed as `"provider/model"`, e.g. `"z-ai/glm-5.3-flash"`; see the
 [OpenRouter model catalog](https://openrouter.ai/models) for the full list.
 
 Set the `OPENROUTER_API_KEY` environment variable to your
@@ -812,7 +812,7 @@ Set the `OPENROUTER_API_KEY` environment variable to your
 ```hocon
     "llm_config": {
         "class": "openrouter",
-        "model_name": "anthropic/claude-sonnet-4.5",
+        "model_name": "z-ai/glm-5.3-flash",
     }
 ```
 
