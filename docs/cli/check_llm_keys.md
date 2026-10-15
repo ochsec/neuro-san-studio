@@ -30,7 +30,8 @@ Each tier is cumulative — tier 2 includes tier 1, and tier 3 includes tiers 1 
 run entirely offline; tier 3 requires network access to reach the provider APIs.
 
 The keys validated are: `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GOOGLE_API_KEY`,
-`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_ENDPOINT`.
+`OPENROUTER_API_KEY`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`,
+`AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_ENDPOINT`.
 
 ## Exit codes
 

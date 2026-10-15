@@ -797,6 +797,29 @@ in the `llm_config` section of an agent network hocon file:
 
 Here you can get a Mistral API [key](https://admin.mistral.ai/).
 
+### OpenRouter
+
+OpenRouter fronts hundreds of models from many providers (OpenAI, Anthropic, Google, Meta, etc.)
+behind a single API. Unlike Mistral, its integration ships with the default dependencies,
+so no extra install is needed.
+Models are addressed as `"provider/model"`, e.g. `"anthropic/claude-sonnet-4.5"`; see the
+[OpenRouter model catalog](https://openrouter.ai/models) for the full list.
+
+Set the `OPENROUTER_API_KEY` environment variable to your
+[OpenRouter API key](https://openrouter.ai/settings/keys) and specify the model in the
+`llm_config` section of an agent network hocon file:
+
+```hocon
+    "llm_config": {
+        "class": "openrouter",
+        "model_name": "anthropic/claude-sonnet-4.5",
+    }
+```
+
+Only the two router models `openrouter/free` and `openrouter/auto` have entries in the
+[default LLM info file](https://github.com/cognizant-ai-lab/neuro-san/blob/main/neuro_san/internals/run_context/langchain/llms/default_llm_info.hocon),
+where they can be referenced by `model_name` alone, like built-in models.
+
 ### Configuring Default Models with Environment Variables
 
 You can easily switch LLM models across all agent networks that share the same configuration by
@@ -1041,6 +1064,7 @@ You can define an LLM directly in `llm_config` using the `class` key in two diff
     | NVidia        | `nvidia`        |
     | Ollma         | `ollama`        |
     | OpenAI        | `openai`        |
+    | OpenRouter    | `openrouter`    |
 
     For example,
 

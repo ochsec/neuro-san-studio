@@ -144,6 +144,19 @@ class TestValidateTier2:
         result = EnvValidator().validate_tier2("AWS_ACCESS_KEY_ID")
         assert result.status == ValidationStatus.VALID
 
+    def test_openrouter_missing_prefix(self, monkeypatch: MonkeyPatch) -> None:
+        """OpenRouter key without `sk-or-` prefix → INVALID_FORMAT."""
+        monkeypatch.setenv("OPENROUTER_API_KEY", "garbage_that_is_long_enough_to_pass_len_check")
+        result = EnvValidator().validate_tier2("OPENROUTER_API_KEY")
+        assert result.status == ValidationStatus.INVALID_FORMAT
+
+    def test_openrouter_valid_format(self, monkeypatch: MonkeyPatch) -> None:
+        """OpenRouter key with `sk-or-` prefix and adequate length → VALID."""
+        key = "sk-or-v1-" + "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6"
+        monkeypatch.setenv("OPENROUTER_API_KEY", key)
+        result = EnvValidator().validate_tier2("OPENROUTER_API_KEY")
+        assert result.status == ValidationStatus.VALID
+
 
 class TestHasErrorsAndWarnings:
     """Tests for has_errors and has_warnings flag-routing."""
