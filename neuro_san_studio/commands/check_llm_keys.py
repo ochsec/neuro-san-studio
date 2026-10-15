@@ -114,6 +114,10 @@ class EnvValidator:
             (len(v) >= 20 and v.isalnum() or "-" in v or "_" in v),
             "Google API keys should be at least 20 characters",
         ),
+        "OPENROUTER_API_KEY": lambda v: (
+            (v.startswith("sk-or-") and len(v) >= 20),
+            "OpenRouter keys should start with 'sk-or-' and be at least 20 characters",
+        ),
         "AWS_ACCESS_KEY_ID": lambda v: (
             (v.startswith("AKIA") and len(v) == 20),
             "AWS Access Key IDs should start with 'AKIA' and be exactly 20 characters",
@@ -150,6 +154,7 @@ class EnvValidator:
         "OPENAI_API_KEY",
         "ANTHROPIC_API_KEY",
         "GOOGLE_API_KEY",
+        "OPENROUTER_API_KEY",
         "AWS_ACCESS_KEY_ID",
         "AWS_SECRET_ACCESS_KEY",
         "AZURE_OPENAI_API_KEY",
